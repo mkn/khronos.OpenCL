@@ -3,3 +3,4 @@
 name: khronos.opencl
 version: 2.0
 include: ./inc
+library: opencl

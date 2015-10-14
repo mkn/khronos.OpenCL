@@ -2,5 +2,47 @@
 
 name: khronos.opencl
 version: 2.0
-include: ./inc
-library: opencl
+
+properties:
+    git: http://github.com/rant/
+
+profiles:
+  - name: c
+    source:  ./icd/src, false
+    include: | 
+        ./inc
+        ./icd/src, false
+    dependencies:
+      - name: khronos.EGL
+        version: 1.5
+        scm:
+            type: git
+            remote: ${git}khronos.EGL
+  - name: nixish
+    parent: c
+    source: ./icd/src/nix
+    files:
+      - type: c
+        linker-end: -Wl,--version-script=./icd/src/icd_exports.map
+  - name: nix
+    parent: nixish
+    os: nix
+  - name: bsd
+    parent: nixish
+    os: bsd
+  - name: win
+    parent: c
+    os: win
+    source: ./icd/src/win
+
+  - name: test
+    include: ./icd/test/inc
+    source: ./icd/test/loader_test ./icd/test/driver_stub ./icd/test/platform
+    main: ./icd/test/loader_test/main.c
+    dependencies:
+      - name: khronos.OpenCL
+        version: 2.0
+        local: .
+    files:
+      - type: c
+        linker-end: -Wl,--version-script=./icd/test/driver_stub/icd_driver_exports.map

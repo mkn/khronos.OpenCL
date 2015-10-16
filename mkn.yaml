@@ -36,7 +36,4 @@ profiles:
     include: ./icd/test/inc
     source: ./icd/test/loader_test ./icd/test/driver_stub ./icd/test/platform
     main: ./icd/test/loader_test/main.c
-    dependencies:
-      - name: khronos.OpenCL
-        version: 2.0
-        local: .
+    self: ${OS}

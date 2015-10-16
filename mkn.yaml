@@ -21,9 +21,6 @@ profiles:
   - name: nixish
     parent: c
     source: ./icd/src/nix
-    files:
-      - type: c
-        linker-end: -Wl,--version-script=./icd/src/icd_exports.map
   - name: nix
     parent: nixish
     os: nix
@@ -43,6 +40,3 @@ profiles:
       - name: khronos.OpenCL
         version: 2.0
         local: .
-    files:
-      - type: c
-        linker-end: -Wl,--version-script=./icd/test/driver_stub/icd_driver_exports.map

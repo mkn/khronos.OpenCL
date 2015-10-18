@@ -4,7 +4,7 @@ name: khronos.opencl
 version: 2.0
 
 properties:
-    git: http://github.com/rant/
+    git: http://github.com/rant
 
 profiles:
   - name: c
@@ -15,9 +15,7 @@ profiles:
     dependencies:
       - name: khronos.EGL
         version: 1.5
-        scm:
-            type: git
-            remote: ${git}khronos.EGL
+        scm: ${git}/khronos.EGL
   - name: nixish
     parent: c
     source: ./icd/src/nix

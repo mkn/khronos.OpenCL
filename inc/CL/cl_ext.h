@@ -337,10 +337,46 @@ typedef CL_API_ENTRY cl_int
 						      cl_kernel_sub_group_info /* param_name */,
 						      size_t /*input_value_size*/,
 						      const void * /*input_value*/,
-						      size_t * /*param_value_size*/,
+						      size_t /*param_value_size*/,
 						      void* /*param_value*/,
 						      size_t* /*param_value_size_ret*/ ) CL_EXT_SUFFIX__VERSION_2_0;
 #endif /* CL_VERSION_2_0 */
+
+#ifdef CL_VERSION_2_1
+/*********************************
+* cl_khr_priority_hints extension
+*********************************/
+#define cl_khr_priority_hints 1
+
+typedef cl_uint  cl_queue_priority_khr;
+
+/* cl_command_queue_properties */
+#define CL_QUEUE_PRIORITY_KHR 0x1096
+
+/* cl_queue_priority_khr */
+#define CL_QUEUE_PRIORITY_HIGH_KHR (1<<0)
+#define CL_QUEUE_PRIORITY_MED_KHR (1<<1)
+#define CL_QUEUE_PRIORITY_LOW_KHR (1<<2)
+
+#endif /* CL_VERSION_2_1 */
+
+#ifdef CL_VERSION_2_1
+/*********************************
+* cl_khr_throttle_hints extension
+*********************************/
+#define cl_khr_throttle_hints 1
+
+typedef cl_uint  cl_queue_throttle_khr;
+
+/* cl_command_queue_properties */
+#define CL_QUEUE_THROTTLE_KHR 0x1097
+
+/* cl_queue_throttle_khr */
+#define CL_QUEUE_THROTTLE_HIGH_KHR (1<<0)
+#define CL_QUEUE_THROTTLE_MED_KHR (1<<1)
+#define CL_QUEUE_THROTTLE_LOW_KHR (1<<2)
+
+#endif /* CL_VERSION_2_1 */
 
 #ifdef __cplusplus
 }

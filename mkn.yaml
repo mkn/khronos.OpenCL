@@ -3,32 +3,29 @@
 name: khronos.opencl
 version: 2.1
 
-profiles:
+parent: ${OS}
+
+profile:
   - name: c
-    source:  ./icd/src, false
-    include: | 
+    src:  ./icd/src, false
+    inc: | 
         ./inc
         ./icd/src, false
-    dependencies:
+    dep:
       - name: khronos.EGL
-        version: 1.5
-        scm: http://github.com/mkn/khronos.EGL
   - name: nixish
     parent: c
-    source: ./icd/src/nix
+    src: ./icd/src/nix
   - name: nix
     parent: nixish
-    os: nix
   - name: bsd
     parent: nixish
-    os: bsd
   - name: win
     parent: c
-    os: win
-    source: ./icd/src/win
+    src: ./icd/src/win
 
   - name: test
-    include: ./icd/test/inc
-    source: ./icd/test/loader_test ./icd/test/driver_stub ./icd/test/platform
+    inc: ./icd/test/inc
+    src: ./icd/test/loader_test ./icd/test/driver_stub ./icd/test/platform
     main: ./icd/test/loader_test/main.c
     self: ${OS}

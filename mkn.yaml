@@ -1,7 +1,7 @@
 
 
 name: khronos.opencl
-version: 2.1
+version: master
 
 parent: ${OS}
 
